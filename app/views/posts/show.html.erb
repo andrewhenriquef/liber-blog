@@ -1,0 +1,12 @@
+<div class="">
+  <div class="row">
+    <h1> <%= @post.title %> </h1>
+    <p> <%=@post.description %> </p>
+  </div>
+</div>
+
+<div class="">
+  <%= link_to 'Voltar', posts_path %>
+  <%= link_to 'Editar', edit_post_path(@post) %>
+  <%= link_to 'Novo Post', new_post_path %>
+</div>
