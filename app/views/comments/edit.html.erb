@@ -1,0 +1,11 @@
+<%= form_tag("/posts/#{@post.id}/comments/", method: :put) do %>
+  <%= hidden_field_tag :id, @comment.id %>
+  <div class="form-group">
+    <%= label_tag :body%>
+    <%= text_area_tag :body, @comment.body, rows: 15, class: 'form-control' %>
+  </div>
+  
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<%end%>
