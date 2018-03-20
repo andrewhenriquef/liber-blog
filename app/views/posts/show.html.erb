@@ -11,22 +11,6 @@
   <%= link_to 'Deletar', @post, method: 'DELETE', data: { confirm: 'Você tem certeza de que deseja deletar este post?' } %>
 </div>
 
-<%= form_for([@post, @post.comments.build], local: true) do |form| %>
-  <% if flash[:comment_errors] %>
-    <ul>
-    <% flash[:comment_errors].each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  <% end %>
-
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_field :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+<%= render 'comments/form' %>
 
 <%= render @post.comments %>

@@ -1,3 +1,8 @@
 <div class="comments">
-  <p><%= comment.body %></p>
+  <% if comment.id %>
+    <p><%= comment.body %></p>
+    <%= link_to 'Deletar comentario', post_comments_path(comment.post, comment),
+                method: :delete,
+                data: { confirm: 'Você tem certeza de que deseja ' } %>
+  <%end%>
 </div>
