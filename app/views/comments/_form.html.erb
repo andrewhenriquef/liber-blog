@@ -1,17 +1,16 @@
-<%= form_for([@post, @post.comments.build], local: true) do |form| %>
-  <% if flash[:comment_errors] %>
-    <ul>
-    <% flash[:comment_errors].each do |msg| %>
-      <li><%= msg %></li>
+<div class="comments">
+  <%= form_for([@post, @post.comments.build], local: true) do |form| %>
+    <% if flash[:comment_errors] %>
+      <ul>
+      <% flash[:comment_errors].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
     <% end %>
-    </ul>
-  <% end %>
 
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_field :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+    <div class="form-group">
+      <%= form.text_field :body , class: 'form-control col-md-12', style: 'margin-bottom: 5%'%>
+      <%= form.submit 'Comentar', class: 'btn-block btn btn-primary form-control'%>
+    </div>
+  <% end %>
+</div>

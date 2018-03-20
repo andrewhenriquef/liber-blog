@@ -25,8 +25,12 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.body = params[:body]
-    @comment.save
-    redirect_to @post
+    if @comment.save
+      redirect_to @post
+    else
+      flash[:comment_errors] = @comment.errors.full_messages
+      redirect_to edit_post_comments_path(@post, @comment)
+    end
   end
 
   private

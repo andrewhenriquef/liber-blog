@@ -1,7 +1,9 @@
-<h1> Posts </h1>
+<div class="col-sm-8 blog-main text-justify">
+  <h1> Posts </h1>
 
-<%= link_to 'Create new post', new_post_path %>
-
-<div class="">
+  <%= link_to 'Fazer nova postagem', new_post_path %>
+  
+  <hr>
   <%= render @posts %>
+  
 </div>
