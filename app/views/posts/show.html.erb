@@ -9,6 +9,8 @@
   <%= link_to 'Voltar', posts_path %>
   <%= link_to 'Editar', edit_post_path(@post) %>
   <%= link_to 'Deletar', @post, method: 'DELETE', data: { confirm: 'Você tem certeza de que deseja deletar este post?' } %>
-
-  <%= link_to 'Novo Post', new_post_path %>
 </div>
+
+<%= render 'comments/form' %>
+
+<%= render @post.comments %>
