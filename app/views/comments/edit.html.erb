@@ -1,11 +1,22 @@
-<%= form_tag("/posts/#{@post.id}/comments/", method: :put) do %>
-  <%= hidden_field_tag :id, @comment.id %>
-  <div class="form-group">
-    <%= label_tag :body%>
-    <%= text_area_tag :body, @comment.body, rows: 15, class: 'form-control' %>
-  </div>
-  
-  <div class="actions">
-    <%= submit_tag %>
-  </div>
-<%end%>
+<div class="col-sm-8 blog-main text-justify">
+  <%= form_tag("/posts/#{@post.id}/comments/", method: :put) do %>
+    <% if flash[:comment_errors] %>
+      <ul>
+      <% flash[:comment_errors].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    <% end %>
+    
+    <%= hidden_field_tag :id, @comment.id %>
+    <div class="form-group">
+     <h2> Edição do comentario </h2>
+      <%= text_area_tag :body, @comment.body, rows: 10, class: 'form-control' %>
+    </div>
+    
+    <div class="actions">
+      <%= submit_tag 'Salvar alterações', class: 'btn btn-primary btn-block' %>
+    </div>
+  <%end%>
+
+</div>

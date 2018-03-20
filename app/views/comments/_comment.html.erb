@@ -1,9 +1,24 @@
 <div class="comments">
   <% if comment.id %>
-    <p><%= comment.body %></p>
-    <%= link_to 'Editar comentario', edit_post_comments_path(comment.post, comment) %>
-    <%= link_to 'Deletar comentario', post_comments_path(comment.post, comment),
-                method: :delete,
-                data: { confirm: 'Você tem certeza de que deseja ' } %>
-  <%end%>
+    <div class="comment-item">
+      <div class="card">
+        <p><%= comment.body %></p>
+
+        <div class="comment-item-actions">
+          <%= link_to edit_post_comments_path(comment.post, comment) do %>
+            <%= fa_icon 'edit'%>
+            <span> Editar</span>
+          <% end %>
+        
+          <%= link_to post_comments_path(comment.post, comment),
+                      method: :delete,
+                      data: { confirm: 'Você tem certeza de que deseja ' } do %>
+            <%= fa_icon 'trash'%>
+            <span> Deletar</span>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  <% end %>
+    
 </div>

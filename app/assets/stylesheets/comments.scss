@@ -1,3 +1,9 @@
-// Place all the styles related to the comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.comment-item > .card {
+  text-align: center;
+  padding: 2% 5%;
+  margin: 5%;
+}
+
+.actions-comment-item {
+  display: inline;
+}

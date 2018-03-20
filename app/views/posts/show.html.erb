@@ -1,16 +1,25 @@
-<div class="">
-  <div class="row">
-    <h1> <%= @post.title %> </h1>
-    <p> <%=@post.description %> </p>
+<div class="col-sm-8 blog-main">
+  <h1> <%= @post.title %> </h1>
+  <p> <%=@post.description %> </p>
+  
+  <div class="actions">
+    <%= link_to edit_post_path(@post) do %>
+      <%= fa_icon 'edit' %>
+      <span>Editar</span>
+    <% end %>
+    
+    <%= link_to @post, method: 'DELETE', data: { confirm: 'Você tem certeza de que deseja deletar este post?' } do %>
+      <%= fa_icon 'trash'%>
+      <span>Deletar</span>
+    <% end %>
   </div>
+
+  <hr>
+  <h2>Comentários</h2>
+
+  <%= render @post.comments %>
+
+  <%= render 'comments/form' %>
+
+  <%= link_to 'voltar', posts_path %>
 </div>
-
-<div class="">
-  <%= link_to 'Voltar', posts_path %>
-  <%= link_to 'Editar', edit_post_path(@post) %>
-  <%= link_to 'Deletar', @post, method: 'DELETE', data: { confirm: 'Você tem certeza de que deseja deletar este post?' } %>
-</div>
-
-<%= render 'comments/form' %>
-
-<%= render @post.comments %>

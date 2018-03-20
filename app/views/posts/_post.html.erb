@@ -1,8 +1,22 @@
-<div class="">
-  <h4><%= post.title %></h4>
-  <p><%= post.description %></p>
+<div class="blog-post text-justify blog-item">
+  <div class="card">
+    <h2 class="blog-post-title"><%= post.title %></h2>
+    <p><%= post.description %></p>
 
-  <%= link_to 'Editar', edit_post_path(post)%>
-  <%= link_to 'Visualizar', post_path(post)%>
-  <%= link_to 'Deletar', post, method: 'DELETE', data: { confirm: 'Você tem certeza de que deseja deletar este post?' } %>
+    <div class="row actions-post-item">
+      <%= link_to edit_post_path(post) do %>
+        <%= fa_icon 'edit' %>
+        <span> Editar </span>
+      <%end%>
+
+      <%= link_to post_path(post) do %>
+        <%= fa_icon 'eye' %>
+        <span> Visualizar </span>
+      <% end %>
+      <%= link_to post, method: 'DELETE', data: { confirm: 'Você tem certeza de que deseja deletar este post?' } do %>
+        <%= fa_icon 'trash' %>
+        <span> Deletar </span>
+      <% end %>
+    </div>
+  </div>
 </div>
