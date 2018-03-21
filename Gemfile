@@ -8,6 +8,7 @@ end
 ruby '2.4.1'
 
 gem 'bootstrap', '~> 4.0.0'
+gem 'devise'
 gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
 gem 'friendly_id', '~> 5.1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
