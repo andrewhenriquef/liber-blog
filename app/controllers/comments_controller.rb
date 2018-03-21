@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @post = Post.find(params[:post_id])
+    @post = Post.friendly.find(params[:post_id])
     @comment = @post.comments.create(comment_params)
 
     if @comment.errors.any?
@@ -10,19 +10,19 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:post_id])
+    @post = Post.friendly.find(params[:post_id])
     @comment = @post.comments.find(params[:format])
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
+    @post = Post.friendly.find(params[:post_id])
     @comment = @post.comments.find(params[:format])
     @comment.destroy
     redirect_to @post
   end
 
   def update
-    @post = Post.find(params[:post_id])
+    @post = Post.friendly.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.body = params[:body]
     if @comment.save
