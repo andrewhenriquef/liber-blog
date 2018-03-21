@@ -5,6 +5,7 @@
       
       <% if user_signed_in? %>
         <span> <%= link_to 'Deslogar', destroy_user_session_path, method: :delete, class: 'nav-link' %> </span>
+        <span> <%= link_to 'Editar perfil', edit_user_registration_path, class: 'nav-link' %> </span>
       <% else %>
         <span> <%= link_to 'Logar', new_user_session_path, class: 'nav-link' %> </span>
         <span> <%= link_to 'Registrar', new_user_registration_path, class: 'nav-link' %> </span>
