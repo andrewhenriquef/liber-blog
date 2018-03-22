@@ -19,18 +19,27 @@ class CommentsController < ApplicationController
   def destroy
     @post = Post.friendly.find(params[:post_id])
     @comment = @post.comments.find(params[:format])
-    @comment.destroy
+    if validate_user(@comment.user_id)
+      @comment.destroy
+    else
+      flash[:user_validation] = 'Você não tem autorização para remover este comentario'
+    end
     redirect_to @post
   end
 
   def update
     @post = Post.friendly.find(params[:post_id])
     @comment = Comment.find(params[:id])
-    @comment.body = params[:body]
-    if @comment.save
-      redirect_to @post
+    if validate_user(@comment.user_id)
+      @comment.body = params[:body]
+      if @comment.save
+        redirect_to @post
+      else
+        flash[:comment_errors] = @comment.errors.full_messages
+        redirect_to edit_post_comments_path(@post, @comment)
+      end
     else
-      flash[:comment_errors] = @comment.errors.full_messages
+      flash[:user_validation] = 'Você não tem autorização para editar este comentario'
       redirect_to edit_post_comments_path(@post, @comment)
     end
   end

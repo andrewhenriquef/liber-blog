@@ -1,5 +1,11 @@
 <div class="col-sm-8 blog-main text-justify">
   <%= form_tag("/posts/#{@post.id}/comments/", method: :put) do %>
+    <% if flash[:user_validation] %>
+      <ul>
+        <li><%= flash[:user_validation] %></li>
+      </ul>
+    <% end %>
+    
     <% if flash[:comment_errors] %>
       <ul>
       <% flash[:comment_errors].each do |msg| %>
