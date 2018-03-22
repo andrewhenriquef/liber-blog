@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   belongs_to :user
 
-  validates :title, presence: true, length: { maximum: 50 }
-  validates :description, presence: true, length: { maximum: 500 }
+  validates :title,       presence: { value: true, message: ': O titulo não foi preenchido' },
+                          length: { maximum: 50, message: ': O titulo não pode ter mais de 50 caracteres' }
+  validates :description, presence: { value: true, message: ': A descrição não foi preenchida' },
+                          length: { maximum: 500, message: ': A descrição não pode ter mais de 500 caracteres' }
 end
