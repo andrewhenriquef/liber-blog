@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.friendly.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
+    @comment = @post.comments.create(comment_params.merge!(user_id: current_user.id))
 
     if @comment.errors.any?
       flash[:comment_errors] = @comment.errors.full_messages
