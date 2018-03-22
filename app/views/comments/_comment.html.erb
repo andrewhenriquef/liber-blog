@@ -3,20 +3,21 @@
     <div class="comment-item">
       <div class="card">
         <p><%= comment.body %></p>
-
-        <div class="comment-item-actions">
-          <%= link_to edit_post_comments_path(comment.post, comment) do %>
-            <%= fa_icon 'edit'%>
-            <span> Editar</span>
-          <% end %>
-        
-          <%= link_to post_comments_path(comment.post, comment),
-                      method: :delete,
-                      data: { confirm: 'Você tem certeza de que deseja ' } do %>
-            <%= fa_icon 'trash'%>
-            <span> Deletar</span>
-          <%end%>
-        </div>
+        <% if current_user && validate_user(comment.user_id) %>
+          <div class="comment-item-actions">
+            <%= link_to edit_post_comments_path(comment.post, comment) do %>
+              <%= fa_icon 'edit'%>
+              <span> Editar</span>
+            <% end %>
+          
+            <%= link_to post_comments_path(comment.post, comment),
+                        method: :delete,
+                        data: { confirm: 'Você tem certeza de que deseja ' } do %>
+              <%= fa_icon 'trash'%>
+              <span> Deletar</span>
+            <%end%>
+          </div>
+        <%end%>
       </div>
     </div>
   <% end %>

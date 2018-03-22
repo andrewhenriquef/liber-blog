@@ -1,8 +1,9 @@
 <div class="col-sm-8 blog-main text-justify">
   <h1> Posts </h1>
 
-  <%= link_to 'Fazer nova postagem', new_post_path %>
-  
+  <% if current_user %>
+    <%= link_to 'Fazer nova postagem', new_post_path %>
+  <% end %>
   <hr>
   <%= render @posts %>
   
