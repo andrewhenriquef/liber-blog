@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[new edit destroy]
 
   def index
     @posts = Post.all
@@ -13,6 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post criado com sucesso!' }
@@ -25,20 +27,30 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'O Post foi atualizado com sucesso!' }
-      else
-        format.html { render :edit, notice: 'O post não pode ser atualizado!' }
+    if validate_user(@post.user_id)
+      respond_to do |format|
+        if @post.update(post_params)
+          format.html { redirect_to @post, notice: 'O Post foi atualizado com sucesso!' }
+        else
+          format.html { render :edit, notice: 'O post não pode ser atualizado!' }
+        end
       end
+    else
+      flash[:user_validation] = "Você não tem autorização para editar este post"
+      render :edit
     end
   end
 
   def destroy
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_path, notice: 'O post foi deletado.' }
-      format.json { head :no_content }
+    if validate_user(@post.user_id)
+      @post.destroy
+      respond_to do |format|
+        format.html { redirect_to posts_path, notice: 'O post foi deletado.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:user_validation] = "Você não tem autorização para remover este post"
+      redirect_to @post
     end
   end
 

@@ -1,4 +1,9 @@
 <%= form_for(post) do |form| %>
+  <% if flash[:user_validation] %>
+    <ul>
+      <li><%= flash[:user_validation] %></li>
+    </ul>
+  <% end %>
   <% if post.errors.any? %>
     <div>
       <h2><%= pluralize(post.errors.count, "erro") %> proibindo este artigo de ser salvo:</h2>
