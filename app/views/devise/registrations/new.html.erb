@@ -5,30 +5,30 @@
     <%= devise_error_messages! %>
 
     <div class="field-group">
-      <%= f.label :email %><br />
+      <%= f.label :email, 'E-mail' %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
     </div>
     
     <div class="field-group">
-      <%= f.label :name %><br />
+      <%= f.label :name, 'Nome' %><br />
       <%= f.text_field :name, class: 'form-control' %>
     </div>
 
     <div class="field-group">
-      <%= f.label :password %>
+      <%= f.label :password, 'Senha' %>
       <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(<%= @minimum_password_length %> minimo de caracteres)</em>
       <% end %><br />
       <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
     </div>
 
     <div class="field-group">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation, 'Confirme a senha' %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Sign up", class: 'btn btn-primary', style: 'margin-top: 5%' %>
+      <%= f.submit "Registrar", class: 'btn btn-primary', style: 'margin-top: 5%' %>
     </div>
   <% end %>
 
