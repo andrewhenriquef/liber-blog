@@ -5,19 +5,22 @@
         <p><%= comment.body %></p>
         <% if current_user && validate_user(comment.user_id) %>
           <div class="comment-item-actions">
-            <%= link_to edit_post_comments_path(comment.post, comment) do %>
+            <%= link_to edit_post_comments_path(comment.post, comment), class: 'btn btn-primary btn-sm' do %>
               <%= fa_icon 'edit'%>
               <span> Editar</span>
             <% end %>
           
             <%= link_to post_comments_path(comment.post, comment),
                         method: :delete,
-                        data: { confirm: 'Você tem certeza de que deseja ' } do %>
+                        data: { confirm: 'Você tem certeza de que deseja ' }, class: 'btn btn-danger btn-sm' do %>
               <%= fa_icon 'trash'%>
               <span> Deletar</span>
             <%end%>
           </div>
         <%end%>
+
+        <span><strong> <%= comment.user.name %> </strong>  <span>
+        <span> em <%= comment.created_at.to_date.strftime("%d/%m/%Y") %> </span>
       </div>
     </div>
   <% end %>

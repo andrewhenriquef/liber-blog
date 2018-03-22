@@ -1,4 +1,4 @@
-<div class="comments">
+<div class="comments card comments-form">
   <%= form_for([@post, @post.comments.build], local: true) do |form| %>
     <% if flash[:comment_errors] %>
       <ul>
