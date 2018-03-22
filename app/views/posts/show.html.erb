@@ -6,18 +6,19 @@
   <% end %>
   <h1> <%= @post.title %> </h1>
   <p> <%=@post.description %> </p>
-  
-  <div class="actions">
-    <%= link_to edit_post_path(@post) do %>
-      <%= fa_icon 'edit' %>
-      <span>Editar</span>
-    <% end %>
-    
-    <%= link_to @post, method: 'DELETE', data: { confirm: 'Você tem certeza de que deseja deletar este post?' } do %>
-      <%= fa_icon 'trash'%>
-      <span>Deletar</span>
-    <% end %>
-  </div>
+  <% if current_user && validate_user(@post.user_id) %>
+    <div class="actions">
+      <%= link_to edit_post_path(@post), class: 'btn btn-primary btn-sm' do %>
+        <%= fa_icon 'edit' %>
+        <span>Editar</span>
+      <% end %>
+      
+      <%= link_to @post, method: 'DELETE', data: { confirm: 'Você tem certeza de que deseja deletar este post?' }, class: 'btn btn-danger btn-sm' do %>
+        <%= fa_icon 'trash'%>
+        <span>Deletar</span>
+      <% end %>
+    </div>
+  <%end%>
 
   <hr>
   <h2>Comentários</h2>

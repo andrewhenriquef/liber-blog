@@ -24,7 +24,12 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    unless validate_user(@post.user_id)
+      flash[:user_validation] = 'Você não tem autorização para editar este post'
+      redirect_to @post
+    end
+  end
 
   def update
     if validate_user(@post.user_id)
@@ -36,7 +41,7 @@ class PostsController < ApplicationController
         end
       end
     else
-      flash[:user_validation] = "Você não tem autorização para editar este post"
+      flash[:user_validation] = 'Você não tem autorização para editar este post'
       render :edit
     end
   end
@@ -49,7 +54,7 @@ class PostsController < ApplicationController
         format.json { head :no_content }
       end
     else
-      flash[:user_validation] = "Você não tem autorização para remover este post"
+      flash[:user_validation] = 'Você não tem autorização para remover este post'
       redirect_to @post
     end
   end

@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  validates :name, presence: { value: true, message: 'O perfile deve contar o nome' }
   has_many :comments, dependent: :destroy
   has_many :posts, dependent: :destroy
 end
